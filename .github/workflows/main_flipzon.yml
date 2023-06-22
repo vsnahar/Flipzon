@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'Flipzon'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_06750245C55F4EDCACA0F948B03573D8 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C94E0B95C27F40F5B8591FB5605728B6 }}
           package: .
