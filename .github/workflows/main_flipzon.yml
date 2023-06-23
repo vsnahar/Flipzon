@@ -25,9 +25,9 @@ jobs:
           node-version: '18.x'
 
       - name: npm install, build, and test
-        run: |
-          ls
+        run: |          
           cd flipzon
+          ls
           $b = $(git status)
           echo $b          
           npm install
