@@ -28,6 +28,7 @@ jobs:
         run: |          
           cd flipzon
           ls
+          git init
           $b = $(git status)
           echo $b          
           npm install
