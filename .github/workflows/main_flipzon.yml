@@ -26,8 +26,8 @@ jobs:
 
       - name: npm install, build, and test
         run: |
-          $a = git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
-          $b = $($a)
+#         $a = git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
+          $b = $(git status)
           echo $b
           cd flipzon
           npm install
