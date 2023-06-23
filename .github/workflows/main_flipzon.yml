@@ -27,9 +27,9 @@ jobs:
       - name: npm install, build, and test
         run: |
           ls
-          $b = $(git status)
-          echo $b
           cd flipzon
+          $b = $(git status)
+          echo $b          
           npm install
           npm run build --if-present
           npm run test --if-present
