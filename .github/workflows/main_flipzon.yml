@@ -26,6 +26,7 @@ jobs:
 
       - name: npm install, build, and test
         run: |   
+          ls
           cd flipzon
           $b=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
           sleep 20
