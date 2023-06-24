@@ -27,7 +27,7 @@ jobs:
       - name: npm install, build, and test
         run: |   
           ls -a
-          $b=$(git status)
+          $b=$(ls)
           sleep 20
           echo $b                   
           npm install
