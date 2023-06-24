@@ -25,11 +25,11 @@ jobs:
           node-version: '18.x'
 
       - name: npm install, build, and test
-        run: |     
+        run: |   
+          cd flipzon
           $b=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
           sleep 20
-          echo $b
-          cd flipzon         
+          echo $b                   
           npm install
           npm run build --if-present
           npm run test --if-present
