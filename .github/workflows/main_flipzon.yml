@@ -33,7 +33,7 @@ jobs:
               echo "Dont do  ${changed_file}."
             else
               echo "Do something with this ${changed_file}."
-          done
+            done
 #       - name: npm install, build, and test
 #         run: |   
 #           ls -a
