@@ -28,7 +28,11 @@ jobs:
         uses: jitterbit/get-changed-files@v1
       - run: |
           for changed_file in ${{ steps.files.outputs.all }}; do
-          echo "Do something with this ${changed_file}."
+            if [${changed_file} -eq "translation"]
+            then
+              echo "Dont do  ${changed_file}."
+            else
+              echo "Do something with this ${changed_file}."
           done
 
 #       - name: npm install, build, and test
