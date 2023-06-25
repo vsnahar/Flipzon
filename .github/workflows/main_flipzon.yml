@@ -28,7 +28,7 @@ jobs:
         uses: jitterbit/get-changed-files@v1
       - run: |
            for changed_file in ${{ steps.files.outputs.all }}; do
-           if [${changed_file} -eq ".github/workflows/main_flipzon.yml"]
+           if [${changed_file} == ".github/workflows/main_flipzon.yml"]
            then
               echo "Dont do  ${changed_file}."
            else
