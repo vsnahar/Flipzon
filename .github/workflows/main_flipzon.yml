@@ -1,89 +1,56 @@
 name: Trans-skip-cypress
-
-
-
-
-on:
-
+'on':
   push:
-
     branches:
-
-      - "**"
-
+      - '**'
 jobs:
-
-    build:
-
-        runs-on: [self-hosted, zendesk-stable]
-
+  build:
+    runs-on:
+      - self-hosted
+      - zendesk-stable
+    steps:
+      build-react:
+        if: >-
+          ${{ github.actor != 'dependabot[bot]' && github.actor !=
+          'svc-github-snyk' }}
+        runs-on:
+          - self-hosted
+          - zendesk-stable
+        env:
+          CI_REPO_OWNER: '${{ github.repository_owner }}'
+          CI_REPO_NAME: '${{ github.event.repository.name }}'
+          CI_COMMIT_MESSAGE: '${{ github.event.commits[0].message }}'
+          CI_COMMIT_SHA: '${{ github.sha }}'
         steps:
+          - uses: zendesk/checkout@v3
+            timeout-minutes: 3
+          - name: Install
+            uses: ./.github/actions/install
+            with:
+              react: true
+          - name: Build React
+            run: ./script/ga/build_react.sh
+          - uses: zendesk/upload-artifact@v3
+            with:
+              name: react-build
+              path: react.tar.gz
+        timeout-minutes: 30
+      check-trans:
+        - uses: jitterbit/get-changed-files@v1
+        - run: |
 
-            build-react:
+            for changed_file in ${{ steps.files.outputs.all }}; do
 
-                if: ${{ github.actor != 'dependabot[bot]' && github.actor != 'svc-github-snyk' }}
+            if [ $changed_file==*"translation"* ];
 
-                runs-on: [self-hosted, zendesk-stable]
+            then
 
-                env:
+                echo "Dont do  ${changed_file}."
 
-                  CI_REPO_OWNER: ${{ github.repository_owner }}
+            else
 
-                  CI_REPO_NAME: ${{ github.event.repository.name }}
+                echo "Do something with this ${changed_file}."
 
-                  CI_COMMIT_MESSAGE: ${{ github.event.commits[0].message }}
+            fi
 
-                  CI_COMMIT_SHA: ${{ github.sha }}
-
-                steps:
-
-                  - uses: zendesk/checkout@v3
-
-                    timeout-minutes: 3
-
-                  - name: Install
-
-                    uses: ./.github/actions/install
-
-                    with:
-
-                      react: true
-
-                  - name: Build React
-
-                    run: ./script/ga/build_react.sh
-
-                  - uses: zendesk/upload-artifact@v3
-
-                    with:
-
-                      name: react-build
-
-                      path: react.tar.gz
-
-                timeout-minutes: 30
-
-
-
-
-             check-trans:   
-
-                - uses: jitterbit/get-changed-files@v1
-
-                - run: |
-
-                    for changed_file in ${{ steps.files.outputs.all }}; do
-
-                    if [ $changed_file==*"translation"* ];
-
-                    then
-
-                        echo "Dont do  ${changed_file}."
-
-                    else
-
-                        echo "Do something with this ${changed_file}."
-
-                    fi
-
-                    done
+            done
