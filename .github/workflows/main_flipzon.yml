@@ -25,7 +25,7 @@ jobs:
 #           node-version: '18.x'
           
       - id: files       
-      - run: |
+        run: |
           git --git-dir="/dir/.git" diff-tree ORIG_HEAD.. | \
             while read srcmode dstmode srcsha dstsha status srcfile dstfile
             do
