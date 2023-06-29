@@ -29,7 +29,12 @@ jobs:
          ls -a
          files=`git diff --name-only HEAD HEAD^`
          for file in $files; do
-            echo 'my changed file is --' $file
+         if [ $file==*"main_flipzon.yml"* ];
+          then
+          echo "Dont do  ${changed_file}."
+         else
+          echo "Do something with this ${changed_file}."
+         fi 
           done
 #       - name: npm install, build, and test
 #         run: |   
