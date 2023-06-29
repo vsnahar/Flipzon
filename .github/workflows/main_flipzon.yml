@@ -27,7 +27,7 @@ jobs:
       - id: files       
         run: |
          ls -a
-         git --git-dir="/.git" diff-tree ORIG_HEAD.. | \
+         git --git-dir=".git" diff-tree ORIG_HEAD.. | \
           while read srcmode dstmode srcsha dstsha status srcfile dstfile
           do
               echo $srcfile
