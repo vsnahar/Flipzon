@@ -29,7 +29,7 @@ jobs:
          git --git-dir="/dir/.git" diff-tree ORIG_HEAD.. | \
           while read srcmode dstmode srcsha dstsha status srcfile dstfile
           do
-              # do something with $srcfile and $dstfile
+              echo $srcfile
           done
 #       - name: npm install, build, and test
 #         run: |   
