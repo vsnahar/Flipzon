@@ -27,7 +27,7 @@ jobs:
       - id: files       
         run: |
          ls -a
-         git log -1 --name-only --pretty=''
+         git diff --name-only HEAD HEAD^
 #       - name: npm install, build, and test
 #         run: |   
 #           ls -a
