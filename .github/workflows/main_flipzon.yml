@@ -26,10 +26,11 @@ jobs:
           
       - id: files       
         run: |
-          files=`git diff HEAD --name-only`
-            for file in $files; do
-             echo $file
-            done
+         git --git-dir="/dir/.git" diff-tree ORIG_HEAD.. | \
+          while read srcmode dstmode srcsha dstsha status srcfile dstfile
+          do
+              # do something with $srcfile and $dstfile
+          done
 #       - name: npm install, build, and test
 #         run: |   
 #           ls -a
