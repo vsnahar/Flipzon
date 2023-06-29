@@ -24,17 +24,12 @@ jobs:
 #         with:
 #           node-version: '18.x'
           
-      - id: files
-        uses: jitterbit/get-changed-files@v1
+      - id: files       
       - run: |
-           for changed_file in ${{ steps.files.outputs.all }}; do
-           if [ $changed_file==*"main_flipzon.yml"* ];
-           then
-              echo "Dont do  ${changed_file}. "
-           else
-              echo "Do something with this ${changed_file}."
-           fi 
-           done
+           files=`git diff --name-only`
+            for file in $files; do
+             echo $file
+            done
 #       - name: npm install, build, and test
 #         run: |   
 #           ls -a
