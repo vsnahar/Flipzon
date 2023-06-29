@@ -27,7 +27,7 @@ jobs:
       - id: files       
         run: |
          ls -a
-         git diff --name-only HEAD HEAD^
+         git diff --name-only HEAD HEAD^ | \
           while read srcmode dstmode srcsha dstsha status srcfile dstfile
             do
                 echo 'dont do with' $srcfile
