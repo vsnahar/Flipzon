@@ -27,11 +27,7 @@ jobs:
       - id: files       
         run: |
          ls -a
-         git diff-tree ORIG_HEAD.. | \
-          while read srcmode dstmode srcsha dstsha status srcfile dstfile
-          do
-              echo $srcfile
-          done
+         git diff COMMIT
 #       - name: npm install, build, and test
 #         run: |   
 #           ls -a
