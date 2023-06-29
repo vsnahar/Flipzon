@@ -27,11 +27,10 @@ jobs:
       - id: files       
         run: |
          ls -a
-         git diff --name-only HEAD HEAD^ | \
-          while read srcmode dstmode srcsha dstsha status srcfile dstfile
-            do
-                echo 'dont do with' :$srcfile 'and ' $dstfile
-            done
+         files=`git diff --name-only HEAD HEAD^`
+         for file in $files; do
+            echo  $file
+          done
 #       - name: npm install, build, and test
 #         run: |   
 #           ls -a
