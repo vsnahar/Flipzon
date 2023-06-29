@@ -28,6 +28,10 @@ jobs:
         run: |
          ls -a
          git diff --name-only HEAD HEAD^
+          while read srcmode dstmode srcsha dstsha status srcfile dstfile
+            do
+                echo $srcfile
+            done
 #       - name: npm install, build, and test
 #         run: |   
 #           ls -a
