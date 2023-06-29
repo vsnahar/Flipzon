@@ -27,7 +27,7 @@ jobs:
       - id: files       
         run: |
          ls -a
-         git diff
+         git diff --staged
 #       - name: npm install, build, and test
 #         run: |   
 #           ls -a
