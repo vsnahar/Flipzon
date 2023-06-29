@@ -26,7 +26,7 @@ jobs:
           
       - id: files       
         run: |
-          files=`git diff --name-only`
+          files=`git diff HEAD --name-only`
             for file in $files; do
              echo $file
             done
