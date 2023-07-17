@@ -27,6 +27,7 @@ jobs:
       - id: files       
         run: |
          ls -a
+         git fetch origin main --depth 1
          files=`git diff --name-only HEAD HEAD^`
          for file in $files; do
          if [[ $file == *"main_flipzon.yml"* ]];
